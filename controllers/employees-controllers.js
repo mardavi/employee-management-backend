@@ -1,8 +1,8 @@
 //justine and trizha
 const HttpError = require("../models/http=error");
-const { validationeResult } = require ("express-validator");
+const { validationResult } = require ("express-validator");
 const Employee = require("../models/employee");
-const employee= require("../models/employee");
+const Employee= require("../models/employee");
 
 const getEmployeeById = async (req, res, next) => {
     const employeeId = req.params.pid;
