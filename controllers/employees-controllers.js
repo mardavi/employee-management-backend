@@ -9,7 +9,7 @@ const getEmployeeById = async (req, res, next) => {
 
     let employeeInfo;
     try{
-        employeeInfo = await Employee.findById(EmployeeId);
+        employeeInfo = await Employee.findById(employeeId);
     }catch(err){
         return next (new HttpError("Something went wrong, could not find the employee .", 500));
     }
