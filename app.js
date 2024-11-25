@@ -6,6 +6,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
+// Tanjil middleware 
+
 mongoose
     .connect("mongodb+srv://mardavi:vIyTXKpLrR3xIJjR@cluster0.ntplj.mongodb.net/employee-management?retryWrites=true&w=majority&appName=Cluster0")
     .then(() => {
