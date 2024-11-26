@@ -47,7 +47,7 @@ const createEmployee = async (req, res, next) => {
 };
 
 const deleteEmployee = async (req, res, next) => {
-    const employeeId = req.params.eid;
+    const employeeId = req.params.pid;
 
     let employeeInfo;
     try{
