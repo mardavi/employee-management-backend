@@ -8,14 +8,14 @@
   },
   "author": "Davi Mar",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "express-validator": "^7.2.0",
-    "mongoose": "^8.8.2"
+    "mongoose": "^8.8.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
-  }
+  },
+  "description": ""
 }
