@@ -25,9 +25,7 @@ const createEmployee = async (req, res, next) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()){
-        console.log(errors);
-        const error = new HttpError("Invalid Input, Please enter correct data!", 400);
-        return next(error);
+        return next(new HttpError("Invalid input data: " + errors.array().map(e => e.msg).join(", "), 400));
     }
 
     const { name, position, department, email, phone } = req.body;
@@ -72,8 +70,7 @@ const deleteEmployee = async (req, res, next) => {
         const errors = validationResult(req);
 
         if (!errors.isEmpty()){
-            console.log(errors);
-            return next(new HttpError("Please enter correct data.", 400))
+            return next(new HttpError("Invalid input data: " + errors.array().map(e => e.msg).join(", "), 400));
         }
 
         const { name, position, department, email, phone } = req.body;
