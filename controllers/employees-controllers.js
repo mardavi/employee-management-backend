@@ -65,7 +65,7 @@ const deleteEmployee = async (req, res, next) => {
     }catch(err){
         return next(new HttpError("Something went wrong, could not delete employee profile.", 500));
     }
-    res.status(200).json({message: "Employee profile deleted successfully."});
+    res.status(200).json({message: "Employee profile deleted successfully.",});
     }
 
     const updateEmployee = async (req, res, next) => {
@@ -89,7 +89,7 @@ const deleteEmployee = async (req, res, next) => {
     }
 
     if(!employeeInfo){
-        return next(new HttpError("Invalid employee ID. Could not find the employee profile."));
+        return next(new HttpError("Invalid employee ID. Could not find the employee profile.", 404));
     }
 
     employeeInfo.name = name;
