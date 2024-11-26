@@ -32,6 +32,6 @@ router.patch(
   employeesController.updateEmployee
 );
 
-router.delete("/:eid", employeesController.deleteEmployee);
+router.delete("/:pid", employeesController.deleteEmployee);
 
 module.exports = router;
