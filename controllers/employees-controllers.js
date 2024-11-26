@@ -2,14 +2,14 @@
 const HttpError = require("../models/http=error");
 const { validationResult } = require ("express-validator");
 const Employee = require("../models/employee");
-const Employee= require("../models/employee");
+const employee = require("../models/employee");
 
 const getEmployeeById = async (req, res, next) => {
     const employeeId = req.params.pid;
 
     let employeeInfo;
     try{
-        employeeInfo = await Employee.findById(EmployeeId);
+        employeeInfo = await Employee.findById(employeeId);
     }catch(err){
         return next (new HttpError("Something went wrong, could not find the employee .", 500));
     }
@@ -19,7 +19,7 @@ const getEmployeeById = async (req, res, next) => {
     }
 
     res.json({employee: employeeInfo.toObject({getters: true})});
-}
+};
 
 const createEmployee = async (req, res, next) => {
     const errors = validationResult(req);
@@ -47,7 +47,7 @@ const createEmployee = async (req, res, next) => {
 };
 
 const deleteEmployee = async (req, res, next) => {
-    const employeeId = req.params.eid;
+    const employeeId = req.params.pid;
 
     let employeeInfo;
     try{
@@ -65,20 +65,21 @@ const deleteEmployee = async (req, res, next) => {
     }catch(err){
         return next(new HttpError("Something went wrong, could not delete employee profile.", 500));
     }
+
     res.status(200).json({message: "Employee profile deleted successfully."});
+};
+
+const updateEmployee = async (req, res, next) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()){
+        console.log(errors);
+        return next(new HttpError("Please enter correct data.", 400))
     }
 
-    const updateEmployee = async (req, res, next) => {
-        const errors = validationResult(req);
+    const { name, position, department, email, phone } = req.body;
 
-        if (!errors.isEmpty()){
-            console.log(errors);
-            return next(new HttpError("Please enter correct data.", 400))
-        }
-
-        const { name, position, department, email, phone } = req.body;
-
-        const employeeId = = req.params.pid;
+    const employeeId = req.params.pid;
 
         
     let employeeInfo;
@@ -101,12 +102,12 @@ const deleteEmployee = async (req, res, next) => {
     try {
         await employeeInfo.save();
     }catch(err){
-        return next(new HttpError("Something went wrong, could not employee profile", 500))
+        return next(new HttpError("Something went wrong, could not employee profile", 500));
     }
 
     res.status(200).json({place: employeeInfo.toObject({getters:true})});
-    }
-    
+};
+
 exports.getEmployeeById = getEmployeeById;
 exports.createEmployee = createEmployee;
 exports.deleteEmployee = deleteEmployee;

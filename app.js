@@ -5,7 +5,10 @@ const HttpError = require("./models/http-error");
 
 const app = express();
 
+const employeesRoutes = require ("./routes/employees-routes");
+
 app.use(bodyParser.json());
+app.use("/api/employees", employeesRoutes);
 
 // Middleware 
 app.use((req, res, next) => {
