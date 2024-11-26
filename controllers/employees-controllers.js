@@ -78,7 +78,7 @@ const deleteEmployee = async (req, res, next) => {
 
         const { name, position, department, email, phone } = req.body;
 
-        const employeeId = = req.params.pid;
+        const employeeId = req.params.pid;
 
         
     let employeeInfo;
