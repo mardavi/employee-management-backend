@@ -5,7 +5,11 @@ const HttpError = require("./models/http-error");
 
 const app = express();
 
+
 const employeesRoutes = require("./routes/employees-routes");
+
+const cors = require('cors');
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use("/api/employees", employeesRoutes);

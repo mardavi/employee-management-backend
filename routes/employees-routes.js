@@ -5,6 +5,8 @@ const employeesController = require("../controllers/employees-controllers");
 
 const router = express.Router();
 
+router.get("/", employeesController.getAllEmployees);
+
 router.get("/:pid", employeesController.getEmployeeById);
 
 router.post(

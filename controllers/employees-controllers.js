@@ -2,6 +2,16 @@ const HttpError = require("../models/http-error");
 const { validationResult } = require("express-validator");
 const Employee = require("../models/employee");
 
+const getAllEmployees = async (req, res, next) => {
+    let employees;
+    try {
+        employees = await Employee.find();
+    } catch (err) {
+        return next(new HttpError("Fetching failed, please try again.", 500));
+    }
+    res.json({ employees: employees.map(emp => emp.toObject({ getters: true }))});
+    }
+
 const getEmployeeById = async (req, res, next) => {
     const employeeId = req.params.pid;
 
@@ -106,3 +116,4 @@ exports.getEmployeeById = getEmployeeById;
 exports.createEmployee = createEmployee;
 exports.deleteEmployee = deleteEmployee;
 exports.updateEmployee = updateEmployee;
+exports.getAllEmployees = getAllEmployees;
