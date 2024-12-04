@@ -96,12 +96,16 @@ const updateEmployee = async (req, res, next) => {
     if (!employeeInfo) {
         return next(new HttpError("Invalid employee ID. Could not find the employee profile.", 404));
     }
-
-    employeeInfo.name = name;
-    employeeInfo.position = position;
-    employeeInfo.department = department;
-    employeeInfo.email = email;
-    employeeInfo.phone = phone;
+    try {
+        await employeeInfo.save();
+    } catch (err) {
+        return next(new HttpError("Could not update the employee profile.", 500));
+    }
+    if (name) employeeInfo.name = name;
+    if (position) employeeInfo.position = position;
+    if (department) employeeInfo.department = department;
+    if (email) employeeInfo.email = email;
+    if (phone) employeeInfo.phone = phone;
 
     try {
         await employeeInfo.save();
